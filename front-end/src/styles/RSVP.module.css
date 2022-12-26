@@ -1,0 +1,95 @@
+section.rsvp {
+    margin-top: 100px;
+    margin-bottom: 300px;
+}
+
+.polaroid {
+    height: 580px;
+    width: 80vw;
+    top: 0;
+    margin: 0 auto;
+    transform: rotate(2deg);
+}
+
+.label {
+    margin-bottom: 29px;
+    display: block;
+}
+
+.textField, .filledIn {
+    outline: 0;
+    border: none;
+    border-bottom: rgba(0, 0, 0, 0.1) solid 3px;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    transition: all 300ms;
+    font-size: 14pt;
+    width: 100%;
+}
+
+.textField:active, .textField:focus, .filledIn {
+    border-color: #a3b18a;
+}
+
+.listbox {
+    background: white;
+    display: block;
+    width: 100%;
+    border-bottom: #a3b18a solid 3px;
+    padding: 10px 25px;
+}
+
+.item, .highlightedItem {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.highlightedItem {
+    color: #a3b18a;
+}
+
+.typeahead {
+    color: grey;
+}
+
+.form {
+    height: 100%;
+}
+
+@media all and (max-width: 800px) {
+    .polaroid {
+        position: initial;
+        height: inherit;
+    }
+
+    .label {
+        margin-bottom: 10px;
+    }
+
+    .textField, .filledIn, .label {
+        font-size: 10pt;
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+    .button button {
+        font-size: 8pt;
+        padding-top: 1px;
+        padding-bottom: 1px
+    }
+}
+
+
+@media all and (max-width: 300px) {
+    .textField, .filledIn, .label {
+        font-size: 8pt;
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+    .button button {
+        font-size: 8pt;
+        padding-top: 2px;
+        padding-bottom: 2px
+    }
+}

@@ -1,0 +1,42 @@
+version: '3'
+services:
+  wedding-db:
+    image: "postgres:14.5"
+    volumes:
+      - "/Users/stijnhooft/app/wedding/db:/var/lib/postgresql/data"
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: "wedding"
+      POSTGRES_PASSWORD: "test123"
+      POSTGRES_DB: "wedding"
+    deploy:
+      resources:
+        limits:
+          memory: "50M"
+
+  wedding-back-end-app:
+    image: "stainii/wedding-back-end:1.0.0-SNAPSHOT"
+    ports:
+      - "3000:3000"
+    environment:
+      SPOTIFY_CLIENT_ID: your Spotify client id
+      SPOTIFY_CLIENT_SECRET: your Spotify client secret
+      MIKRO_ORM_USER: wedding
+      MIKRO_ORM_PASSWORD: test123
+      MIKRO_ORM_DB_NAME: wedding
+      MIKRO_ORM_HOST: localhost
+      MIKRO_ORM_PORT: 5433
+    deploy:
+      resources:
+        limits:
+          memory: "50M"
+
+  wedding-front-end-app:
+    image: "stainii/wedding-front-end:1.0.0-SNAPSHOT"
+    ports:
+      - "80:80"
+    deploy:
+      resources:
+        limits:
+          memory: "50M"

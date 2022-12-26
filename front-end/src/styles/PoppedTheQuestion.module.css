@@ -1,0 +1,58 @@
+section.poppedTheQuestion {
+    display: grid;
+    grid-template-columns: minmax(30vw, 50vw) minmax(40vw, auto);
+    align-items: center;
+
+    margin-top: 100px;
+}
+
+.polaroid {
+    height: 75vh;
+    width: 50vw;
+    margin: 0 auto;
+    top: 0;
+}
+
+.text {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.textSmall {
+    font-size: 20pt;
+    color: #72849d;
+}
+
+.textBig {
+    font-size: 25pt;
+    color: #72849d;
+}
+
+@media all and (max-width: 900px) {
+    section.poppedTheQuestion {
+        grid-template-columns: 1fr;
+        grid-gap: 50px;
+    }
+
+    .text {
+        grid-row: 1;
+        margin-left: 7vw;
+        margin-right: 7vw;
+        text-align: center;
+    }
+
+    .textSmall {
+        font-size: 16pt;
+    }
+
+    .textBig {
+        font-size: 20pt;
+    }
+
+    .polaroid {
+        position: initial;
+        grid-row: 2;
+        width: 80vw;
+        height: 80vh;
+    }
+}

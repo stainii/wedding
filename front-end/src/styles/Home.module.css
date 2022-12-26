@@ -1,0 +1,45 @@
+.container {
+    transition: background-color 1s;
+    padding-top: 10vh;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.darkBackground {
+    background-image: url('../public/backgrounds/lights-background.jpg');
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    background-size: cover;
+    z-index: -1;
+    transition: opacity 500ms;
+    opacity: 0;
+}
+
+.darkBackground.active {
+    opacity: 1;
+}
+
+.blanket {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 400px;
+    display: block;
+    z-index: -1;
+    background-image: url('../public/backgrounds/blanket.png');
+    background-position: top;
+    background-size: cover;
+}
+
+@media all and (max-width: 900px) {
+    .container {
+        padding-top: 0;
+    }
+    .blanket {
+        height: 200px;
+    }
+}

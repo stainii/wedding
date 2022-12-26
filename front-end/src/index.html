@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Shaary en Stijn - 29 juni 2024</title>
+
+    <link type="image/png" rel="icon" href="public/favicon.png">
+
+    <style>
+        .loader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(249, 249, 249);
+            left: 0;
+            top: 0;
+            z-index: 10000;
+            transition: opacity 400ms ease 600ms;
+            display: grid;
+            align-content: center;
+            justify-items: center;
+        }
+
+        .done {
+            opacity: 0;
+        }
+
+        .fade-out-sooner {
+            transition: opacity 300ms;
+        }
+
+        .lds-heart {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            transform: rotate(45deg);
+            transform-origin: 40px 40px;
+        }
+
+        .lds-heart div {
+            top: 32px;
+            left: 32px;
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: red;
+            animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .lds-heart div:after,
+        .lds-heart div:before {
+            content: " ";
+            position: absolute;
+            display: block;
+            width: 32px;
+            height: 32px;
+            background: red;
+        }
+
+        .lds-heart div:before {
+            left: -24px;
+            border-radius: 50% 0 0 50%;
+        }
+
+        .lds-heart div:after {
+            top: -24px;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .done .fade-out-sooner {
+            opacity: 0;
+        }
+
+        @keyframes lds-heart {
+            0% {
+                transform: scale(0.95);
+            }
+            5% {
+                transform: scale(1.1);
+            }
+            39% {
+                transform: scale(0.85);
+            }
+            45% {
+                transform: scale(1);
+            }
+            60% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(0.9);
+            }
+        }
+
+        .ie-error {
+            display: none;
+        }
+
+        /* Only targets IE 10 and up */
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            .loader, #app {
+                display: none;
+            }
+
+            html, body {
+                height: 100%;
+            }
+
+            .ie-error {
+                display: block;
+                height: 100%;
+                width: 100%;
+                background: blue;
+                color: white;
+                font-family: monospace;
+                padding-left: 20%;
+                padding-right: 20%;
+                padding-top: 5%;
+            }
+        }
+
+        /* End */
+    </style>
+
+    <link rel="stylesheet" href="styles/globals.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="loader">
+    <div class="lds-heart fade-out-sooner">
+        <div></div>
+    </div>
+    <p class="fade-out-sooner">Laden...</p>
+</div>
+<div class="ie-error">
+    <h1>Deze website kan niet geopend worden in Internet Explorer.</h1>
+    <p>Om uitgenodigd te worden op dit trouwfeest, gelieve Internet Explorer te sluiten, deze website te openen in een
+        recente browser (zoals Edge, Chrome, Firefox, Vivaldi, ...) <b>en Internet Explorer daarna nooit meer te
+            openen</b>.</p>
+</div>
+<script>
+    window.addEventListener('load', function () {
+        let loader = document.getElementsByClassName("loader")[0]
+        loader.classList.add("done");
+        setTimeout(function () {
+            loader.parentElement.removeChild(loader);
+        }, 1000);
+    });
+</script>
+<div id="app">
+</div>
+<script type="module" src="index.js"></script>
+</body>
+</html>
+

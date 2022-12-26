@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat&display=swap');
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 13pt;
+    background-color: #f9f9f9;
+    color: #4e636d;
+    font-family: 'Montserrat', sans-serif;
+}
+
+input {
+    font-family: 'Montserrat', sans-serif
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
