@@ -6,6 +6,7 @@ import photo3 from 'url:../public/34_IMG_6439.jpeg';
 import toast from 'url:../public/icons/toast-party.svg';
 import calendar from 'url:../public/icons/calendar.svg';
 import location from 'url:../public/icons/location.svg';
+import email from 'url:../public/icons/email.svg';
 
 export default function WhereAndWhen() {
 
@@ -20,10 +21,10 @@ export default function WhereAndWhen() {
                     </p>
                     <p className={styles.date}>
                         <img className={styles.icon} src={toast}/>
-                        <span>We starten om 15:00</span>
+                        <span>We starten om 14:00</span>
                     </p>
 
-                    <a href="https://www.google.com/maps/place/La+Carri%C3%A8re,+Bioul,+Event+%26+wedding+space/@50.3472997,4.7963134,17z/"
+                    <a href="https://goo.gl/maps/aJVJ7wCN4zxc8Yzj8"
                        className={styles.locationGrid}>
                         <img className={styles.icon} src={location}/>
                         <span>Domaine La Carrière</span>
@@ -32,6 +33,12 @@ export default function WhereAndWhen() {
                             <span className={styles.noWrap}>5537 Bioul</span>
                         </address>
                     </a>
+
+                    <p className={styles.presentGrid}>
+                        <img className={styles.icon} src={email}/>
+                        <span>Cadeautip</span>
+                        <span className={styles.small}>BE10 0018 1207 6804</span>
+                    </p>
                 </div>
 
                 <div className={styles.polaroid}>

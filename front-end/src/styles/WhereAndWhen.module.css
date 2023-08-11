@@ -73,7 +73,7 @@ section.whereAndWhen::after {
     margin-left: 10vw;
 }
 
-.text address {
+.text address, .text .small {
     font-size: 17pt;
     font-style: normal;
 }
@@ -104,16 +104,29 @@ section.whereAndWhen::after {
 }
 
 .icon {
-    height: 45pt;
+    width: 50px;
     margin-right: 1rem;
 }
+
+.presentGrid {
+    display: grid;
+    grid-template-columns: 0fr 1fr;
+    grid-auto-rows: min-content;
+    align-items: center;
+}
+
+
+.presentGrid .icon {
+    grid-row: 1 / span 2;
+}
+
 
 @media all and (max-width: 1300px) {
     section.whereAndWhen {
         font-size: 17pt;
     }
 
-    .text address {
+    .text address, .text .small {
         font-size: 14pt;
     }
 
@@ -142,18 +155,25 @@ section.whereAndWhen::after {
         align-items: center;
     }
 
+    .presentGrid {
+        display: grid;
+        grid-template-columns: 0fr 1fr;
+        grid-auto-rows: min-content;
+        align-items: center;
+    }
+
     .text {
         margin-left: 7vw;
         margin-right: 7vw;
-        margin-bottom: 100px;
+        margin-bottom: 50px;
     }
 
     section.whereAndWhen {
-        margin-bottom: 450px;
+        margin-bottom: 350px;
     }
 
     .icon {
-        height: 25pt;
+        width: 35px;
     }
 }
 
@@ -165,7 +185,7 @@ section.whereAndWhen::after {
         font-size: 14pt;
     }
 
-    .text address {
+    .text address, .text .small {
         font-size: 12pt;
     }
 }
