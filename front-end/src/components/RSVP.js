@@ -35,6 +35,23 @@ export default function RSVP({onRequestForThemeChange}) {
         setValidForm(names && names !== '' && kidsNames && names !== '' && vegetarian && vegetarian !== '' && foodAllergies && foodAllergies !== '');
     }, [names, kidsNames, vegetarian, foodAllergies]);
 
+    const trySend = async(responseDto, attempt) => {
+        if (attempt > 3) {
+            alert('De registratie is niet gelukt. Kan je nog eens proberen?');
+            return;
+        }
+        let response = await fetch("api/response", {
+            method: 'POST',
+            body: JSON.stringify(responseDto),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        if (!response.ok) {
+            await(trySend(responseDto, attempt + 1));
+        }
+    }
+
     const sendResponse = async (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -52,22 +69,14 @@ export default function RSVP({onRequestForThemeChange}) {
             foodAllergies: foodAllergies,
             songRequest: songRequest
         }
-        const response = await fetch("api/response", {
-            method: 'POST',
-            body: JSON.stringify(responseDto),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
 
-        if (!response.ok) {
-            alert('De registratie is niet gelukt. Kan je nog eens proberen?');
-            return;
-        }
+        let response = await trySend(responseDto, 1);
         setRegistered(true);
         setFlip(false);
         console.debug("Received response", response);
     };
+
+
     // endregion
 
     // region flip and theme
