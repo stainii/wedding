@@ -1,8 +1,9 @@
 import * as styles from "../styles/Polaroid.module.css";
 import React, {useEffect, useRef} from "react";
+import {PolaroidFront} from "./PolaroidFront";
 import {PolaroidBack} from "./PolaroidBack";
 
-export function Polaroid({children, photo, rotate, orientation = "portrait", flip = false}) {
+export function Polaroid({children, rotate, orientation = "portrait", flip = false}) {
 
     // nice ratios to scale the polaroid according to the container size
     const EXAMPLE_WIDTH = 400;
@@ -19,7 +20,6 @@ export function Polaroid({children, photo, rotate, orientation = "portrait", fli
     const borderBottomToHeight = EXAMPLE_BORDER_BOTTOM / EXAMPLE_HEIGHT;
 
     const polaroidElement = useRef(null);
-    const textBelowPhotoElement = useRef(null);
 
     // create an observer that notifies us when the container of the polaroid has changed its size
     let resizeObserver = new ResizeObserver((el) => {
@@ -32,6 +32,8 @@ export function Polaroid({children, photo, rotate, orientation = "portrait", fli
         // create the polaroid effect based on the container that this polaroid is in
         let expectedWidth = section.parentElement.clientWidth;
         let expectedHeight = section.parentElement.clientHeight;
+
+
 
         if (expectedWidth < 100 || expectedHeight < 100) {
             setTimeout(dress, 100);
@@ -51,10 +53,6 @@ export function Polaroid({children, photo, rotate, orientation = "portrait", fli
             section.style.borderWidth = (expectedHeight * borderToHeight) + "px";
             section.style.borderBottomWidth = (expectedHeight * borderBottomToHeight) + "px";
         }
-
-        textBelowPhotoElement.current
-            .style
-            .height = section.style.borderBottomWidth;
     }
 
     // init
@@ -65,8 +63,8 @@ export function Polaroid({children, photo, rotate, orientation = "portrait", fli
     }, []);
 
 
-    let textBelowPhoto = React.Children.map(children, (child) => {
-        if (child.type !== PolaroidBack) {
+    let childrenOnTheFront = React.Children.map(children, (child) => {
+        if (child.type === PolaroidFront) {
             return child;
         } else {
             return null;
@@ -95,13 +93,7 @@ export function Polaroid({children, photo, rotate, orientation = "portrait", fli
                  style={{transform: 'rotate(' + rotate + ')'}}>
 
             <div className={styles.front}>
-                <div className={styles.photo}>
-                    <img src={photo}/>
-                </div>
-                <div ref={textBelowPhotoElement}
-                     className={styles.textBelowPhoto}>
-                    {textBelowPhoto}
-                </div>
+                {childrenOnTheFront}
             </div>
 
             <div className={styles.back}>

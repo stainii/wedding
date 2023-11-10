@@ -7,6 +7,8 @@ import toast from 'url:../public/icons/toast-party.svg';
 import calendar from 'url:../public/icons/calendar.svg';
 import location from 'url:../public/icons/location.svg';
 import email from 'url:../public/icons/email.svg';
+import {PolaroidPhoto} from "./PolaroidPhoto";
+import {PolaroidFront} from "./PolaroidFront";
 
 export default function WhereAndWhen() {
 
@@ -43,16 +45,28 @@ export default function WhereAndWhen() {
 
                 <div className={styles.polaroid}>
                     <div className={styles.polaroid1}>
-                        <Polaroid photo={photo1} rotate="20deg"
-                                  orientation="landscape"/>
+                        <Polaroid rotate="20deg"
+                                  orientation="landscape">
+                            <PolaroidFront>
+                                <PolaroidPhoto photo={photo1}></PolaroidPhoto>
+                            </PolaroidFront>
+                        </Polaroid>
                     </div>
                     <div className={styles.polaroid2}>
-                        <Polaroid photo={photo2} rotate="-5deg"
-                                  orientation="landscape"/>
+                        <Polaroid rotate="-5deg"
+                                  orientation="landscape">
+                            <PolaroidFront>
+                                <PolaroidPhoto photo={photo2}></PolaroidPhoto>
+                            </PolaroidFront>
+                        </Polaroid>
                     </div>
-                    <div className={styles.polaroid3}><
-                        Polaroid photo={photo3} rotate="25deg"
-                                 orientation="landscape"/>
+                    <div className={styles.polaroid3}>
+                        <Polaroid rotate="25deg"
+                                  orientation="landscape">
+                            <PolaroidFront>
+                                <PolaroidPhoto photo={photo3}></PolaroidPhoto>
+                            </PolaroidFront>
+                        </Polaroid>
                     </div>
                 </div>
             </div>

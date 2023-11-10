@@ -1,14 +1,15 @@
 import * as styles from "../styles/RSVP.module.css";
 import {Polaroid} from "./Polaroid";
 import photo from 'url:../public/tibo-zonnebril.jpg'
-import {PolaroidBack} from "./PolaroidBack";
-import {useEffect, useRef, useState} from "react";
+import {PolaroidFront} from "./PolaroidFront";
+import React, {useEffect, useRef, useState} from "react";
 import Button from "./Button";
 import Turnstone from "turnstone";
+import {PolaroidBack} from "./PolaroidBack";
+import {PolaroidPhoto} from "./PolaroidPhoto";
 
 export default function RSVP({onRequestForThemeChange}) {
 
-    const [flip, setFlip] = useState(false);
     const [darkTheme, setDarkTheme] = useState(false);
     const [names, setNames] = useState("");
     const [kidsNames, setKidsNames] = useState("");
@@ -18,17 +19,8 @@ export default function RSVP({onRequestForThemeChange}) {
     const [unvalidatedSongRequest, setUnvalidatedSongRequest] = useState(null);
     const [audio, setAudio] = useState(null);
     const [registered, setRegistered] = useState(false);
-    const [text, setText] = useState('');
     const [validForm, setValidForm] = useState(false);
     const songRequestElement = useRef();
-
-    // region text
-    useEffect(() => {
-        if (registered) {
-            setText('We kijken er naar uit!');
-        }
-    }, [registered]);
-    // endregion
 
     // region form
     useEffect(() => {
@@ -72,7 +64,6 @@ export default function RSVP({onRequestForThemeChange}) {
 
         let response = await trySend(responseDto, 1);
         setRegistered(true);
-        setFlip(false);
         console.debug("Received response", response);
     };
 
@@ -80,26 +71,21 @@ export default function RSVP({onRequestForThemeChange}) {
     // endregion
 
     // region flip and theme
-    const updateFlipAndTheme = () => {
+    const updateTheme = () => {
         let el = document.getElementsByClassName(styles.polaroid)[0];
-        let belowFlipPoint = el.getBoundingClientRect().top < document.documentElement.clientHeight - el.getBoundingClientRect().height / 2;
-
-        if (!flip && belowFlipPoint) {
-            setFlip(true);
-        }
+        let belowPolaroidPoint = el.getBoundingClientRect().top < document.documentElement.clientHeight - el.getBoundingClientRect().height / 2;
 
         if (registered) {
-            setFlip(false);
             setDarkTheme(false);
         }
 
-        if (darkTheme && !belowFlipPoint) {
+        if (darkTheme && !registered && !belowPolaroidPoint) {
             setDarkTheme(false);
         }
     }
 
     useEffect(() => {
-            updateFlipAndTheme();
+            updateTheme();
 
             onRequestForThemeChange(darkTheme);
 
@@ -110,7 +96,7 @@ export default function RSVP({onRequestForThemeChange}) {
                 });
             }
 
-            const listener = () => updateFlipAndTheme();
+            const listener = () => updateTheme();
             document.addEventListener("scroll", listener);
 
             return () => {
@@ -215,17 +201,14 @@ export default function RSVP({onRequestForThemeChange}) {
     return (
         <section className={styles.rsvp}>
             <div className={styles.polaroid}>
-                <Polaroid photo={photo}
-                          flip={flip}>
-                    {text}
-                    <PolaroidBack>
+                <Polaroid flip={registered}>
+                    <PolaroidFront>
                         <form onSubmit={sendResponse} className={styles.form}>
                             <label className={styles.label}>Hoe heten jullie?
                                 <input type="text"
                                        value={names}
                                        onChange={(e) => setNames(e.target.value)}
-                                       className={styles.textField + " " + (names.length > 0 ? styles.filledIn : '')}
-                                       autoFocus={flip}/>
+                                       className={styles.textField + " " + (names.length > 0 ? styles.filledIn : '')}/>
                             </label>
                             <label className={styles.label}>Komen de kids mee?
                                 <input type="text"
@@ -268,6 +251,9 @@ export default function RSVP({onRequestForThemeChange}) {
                                 <Button enabled={validForm}>Bevestigen</Button>
                             </div>
                         </form>
+                    </PolaroidFront>
+                    <PolaroidBack>
+                        <PolaroidPhoto photo={photo} text={'We kijken er naar uit!'}></PolaroidPhoto>
                     </PolaroidBack>
                 </Polaroid>
             </div>

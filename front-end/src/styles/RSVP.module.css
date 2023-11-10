@@ -14,6 +14,7 @@ section.rsvp {
 .label {
     margin-bottom: 29px;
     display: block;
+    white-space: nowrap;
 }
 
 .textField, .filledIn {
@@ -56,6 +57,8 @@ section.rsvp {
 
 .form {
     height: 100%;
+    background: white;
+    transform: scale(1.01); /* scale is a hack for Chrome who shows ugly border */
 }
 
 @media all and (max-width: 800px) {
