@@ -39,7 +39,7 @@ export default function WhereAndWhen() {
                     <p className={styles.presentGrid}>
                         <img className={styles.icon} src={email}/>
                         <span>Cadeautip</span>
-                        <span className={styles.small}>BE10 0018 1207 6804</span>
+                        <span className={styles.small}>BE42 0343 1812 0454</span>
                     </p>
                 </div>
 

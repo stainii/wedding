@@ -33,8 +33,6 @@ export function Polaroid({children, rotate, orientation = "portrait", flip = fal
         let expectedWidth = section.parentElement.clientWidth;
         let expectedHeight = section.parentElement.clientHeight;
 
-
-
         if (expectedWidth < 100 || expectedHeight < 100) {
             setTimeout(dress, 100);
             return;
